@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="maguro-obj" src="./assets/maguro.obj"></a-asset-item>
+        <a-asset-item id="maguro-mtl" src="./assets/maguro.mtl"></a-asset-item>
+      </a-assets>
+      <a-obj-model
+        src="#maguro-obj"
+        mtl="#maguro-mtl"
+        scale="1 -1 -1"
+        position="0 0.5 -5"
+      ></a-obj-model>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
