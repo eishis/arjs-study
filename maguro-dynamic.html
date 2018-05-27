@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+      var _time = console.time;
+      console.time = function(label) {
+        if (label === 'OBJLoader') return;
+        _time.apply(console, arguments);
+      }
+
+      var _timeEnd = console.timeEnd;
+      console.timeEnd = function(label) {
+        if (label === 'OBJLoader') return;
+        _timeEnd.apply(console, arguments);
+      }
+    </script>
     <script src="//aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="./js/my-look-controls.js"></script>
     <script src="./js/dynamic.js"></script>
   </head>
   <body style='margin : 0px; overflow: hidden;'>
@@ -10,15 +24,21 @@
         <a-asset-item id="maguro-obj" src="./assets/maguro.obj"></a-asset-item>
         <a-asset-item id="maguro-mtl" src="./assets/maguro.mtl"></a-asset-item>
       </a-assets>
+      <a-box wireframe="true"></a-box>
       <a-entity
         dynamic
         obj-model="obj:#maguro-obj; mtl:#maguro-mtl"
         scale="1 1 1"
-        position="0 0 -5"
+        position="0 0 0"
         velocity="5 10 0"
         angular-velocity="1 5 0"
       ></a-entity>
       <a-sky color="#ECECEC"></a-sky>
+      <a-entity
+        camera="active: true"
+        my-look-controls
+        data-aframe-default-camera
+      ></a-entity>
     </a-scene>
     <script>
       function createMaguro() {
@@ -31,7 +51,7 @@
         maguro.setAttribute('position', {
           x: 0,
           y: 0,
-          z: -5,
+          z: 0,
         });
         maguro.setAttribute('rotation', {
           x: 360 * Math.random(),
