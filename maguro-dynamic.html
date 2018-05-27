@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="//aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="./js/dynamic.js"></script>
+  </head>
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="maguro-obj" src="./assets/maguro.obj"></a-asset-item>
+        <a-asset-item id="maguro-mtl" src="./assets/maguro.mtl"></a-asset-item>
+      </a-assets>
+      <a-entity
+        dynamic
+        obj-model="obj:#maguro-obj; mtl:#maguro-mtl"
+        scale="1 1 1"
+        position="0 0 -5"
+        velocity="5 10 0"
+        angular-velocity="1 5 0"
+      ></a-entity>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+    <script>
+      function createMaguro() {
+        var scene = document.querySelector('a-scene');
+        var maguro = document.createElement('a-entity');
+        maguro.setAttribute('obj-model', {
+          obj: '#maguro-obj',
+          mtl: '#maguro-mtl',
+        })
+        maguro.setAttribute('position', {
+          x: 0,
+          y: 0,
+          z: -5,
+        });
+        maguro.setAttribute('rotation', {
+          x: 360 * Math.random(),
+          y: 360 * Math.random(),
+          z: 360 * Math.random(),
+        })
+        maguro.setAttribute('dynamic', true);
+        maguro.setAttribute('velocity', {
+          x: 20 * (Math.random() - 0.5),
+          y: 30 * Math.random(),
+          z: 20 * (Math.random() - 0.5),
+        });
+        maguro.setAttribute('angular-velocity', {
+          x: 10 * Math.PI * (Math.random() - 0.5),
+          y: 10 * Math.PI * (Math.random() - 0.5),
+          z: 10 * Math.PI * (Math.random() - 0.5),
+        })
+
+        scene.appendChild(maguro);
+      }
+
+      setInterval(createMaguro, 100);
+    </script>
+  </body>
+</html>
