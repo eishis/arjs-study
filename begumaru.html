@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var _time = console.time;
+      console.time = function(label) {
+        if (label === 'OBJLoader') return;
+        _time.apply(console, arguments);
+      }
+
+      var _timeEnd = console.timeEnd;
+      console.timeEnd = function(label) {
+        if (label === 'OBJLoader') return;
+        _timeEnd.apply(console, arguments);
+      }
+    </script>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.loaders.min.js"></script>
+    <script src="./js/my-look-controls.js"></script>
+  </head>
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="monster" src="./assets/begumaru.gltf"></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#monster"
+        animation-mixer
+        scale="1 1 1"
+        rotation="0 -90 0"
+        position="0 0 0"
+      ></a-entity>
+      <a-sky color="#ECECEC"></a-sky>
+      <a-entity
+      camera="active: true"
+      my-look-controls
+      data-aframe-default-camera
+    ></a-entity>
+    </a-scene>
+  </body>
+</html>
