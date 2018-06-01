@@ -23,7 +23,7 @@
       pointerLockEnabled: {default: false},
       reverseMouseDrag: {default: false},
       touchEnabled: {default: true},
-      radius: {type: 'number', default: 5},
+      distance: {type: 'number', default: 5},
     },
 
     init: function () {
@@ -203,7 +203,7 @@
       el.object3D.rotation.set(pitch, yaw, 0);
 
       // カメラの向きに合わせて位置を更新
-      var r = this.data.radius;
+      var r = this.data.distance;
       var sinx = Math.sin(pitch);
       var cosx = Math.cos(pitch);
       var siny = Math.sin(yaw);
